@@ -8,30 +8,32 @@ public class QuantityMeasurementApp {
     	return length1.equals(length2);
     }
     
-    public static void demonstrateFeetEquality() {
-    	Length feet1 = new Length(10, LengthUnit.FEET);
-    	Length feet2 = new Length(10, LengthUnit.FEET);
-    	
-    	System.out.println("Feet1 equals Feet2 ? " + feet1.equals(feet2));
-    }
-    
-    public static void demonstrateInchEquality() {
-    	Length inch1 = new Length(10, LengthUnit.INCHES);
-    	Length inch2 = new Length(10, LengthUnit.INCHES);
-    	
-    	System.out.println("Inch1 equals Inch2 ? " + inch1.equals(inch2));
-    }
-    
-    public static void demonstrateFeetInchesComparasion() {
-    	Length feet = new Length(1, LengthUnit.FEET);
-    	Length inch = new Length(12, LengthUnit.INCHES);
-    	
-    	System.out.println("Feet equals Inch ? " + demonstrateLengthEquality(feet, inch));
-    }
+   public static boolean demonstrateLengthComparasion(double value1, LengthUnit unit1, double value2, LengthUnit unit2) {
+	   Length length1 = new Length(value1, unit1);
+	   Length length2 = new Length(value2, unit2);
+	   
+	   System.out.println("Comparing " + value1 + unit1 + " and " + value2 + unit2);
+	   return demonstrateLengthEquality(length1, length2);
+   }
     
     public static void main(String[] args) {
-		demonstrateFeetEquality();
-		demonstrateInchEquality();
-		demonstrateFeetInchesComparasion();
+    	// Demonstrate feet and inch equality
+    	System.out.println(demonstrateLengthComparasion(1.0, LengthUnit.FEET, 12.0, LengthUnit.INCHES));
+    	System.out.println();
+    	
+    	// Demonstrate yards and inch equality
+    	System.out.println(demonstrateLengthComparasion(1.0, LengthUnit.YARDS, 36.0, LengthUnit.INCHES));
+    	System.out.println();
+    	
+    	// Demonstrate centimeter and inch equality
+    	System.out.println(demonstrateLengthComparasion(100.0, LengthUnit.CENTIMETERS, 39.3701, LengthUnit.INCHES));
+    	System.out.println();
+    	
+    	// Demonstrate feet and inch yards
+    	System.out.println(demonstrateLengthComparasion(3.0, LengthUnit.FEET, 1.0, LengthUnit.YARDS));
+    	System.out.println();
+    	
+    	// Demonstrate centimeter and feets equality
+    	System.out.println(demonstrateLengthComparasion(30.48, LengthUnit.CENTIMETERS, 1.0, LengthUnit.FEET));
 	}
 }

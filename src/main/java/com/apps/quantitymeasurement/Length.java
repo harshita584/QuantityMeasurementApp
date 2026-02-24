@@ -67,6 +67,22 @@ public class Length {
 		return new Length(resultantValue, this.unit);
 	}
 	
+	// Overload add method for target unit specified by user
+	public Length add(Length thatLength, LengthUnit targetUnit) {
+		if(thatLength == null) throw new IllegalArgumentException("The length to add cannot be null");
+		if(targetUnit == null) throw new IllegalArgumentException("The target unit cannot be null");
+		return addAndConvert(thatLength, targetUnit);
+	}
+	
+	private Length addAndConvert(Length thatLength, LengthUnit targetUnit) {
+		double value1 = this.convertToBaseUnit();
+		double value2 = thatLength.convertToBaseUnit();
+		double totalValue = value1 + value2;
+		double resultantValue = convertFromBaseToTargetUnit(totalValue, targetUnit);
+		
+		return new Length(resultantValue, targetUnit); 
+	}
+	
 	// Rounded up to 2 decimal places
 	private double convertFromBaseToTargetUnit(double lengthInInches, LengthUnit targetUnit) {
 		double result = lengthInInches / targetUnit.getConversionFactor();

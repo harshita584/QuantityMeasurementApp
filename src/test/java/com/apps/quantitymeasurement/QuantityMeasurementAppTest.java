@@ -1,9 +1,7 @@
 package com.apps.quantitymeasurement;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import com.apps.quantitymeasurement.Length.LengthUnit;
 
 public class QuantityMeasurementAppTest {
@@ -194,5 +192,25 @@ public class QuantityMeasurementAppTest {
     	Length sumLength = QuantityMeasurementApp.demonstrateLengthAddition(length1, length2);
     	Length expectedLength = new Length(5.0, LengthUnit.FEET);
     	assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(sumLength, expectedLength));
+    }
+    
+    @Test
+    public void addFeetAndInchesWithTargetUnitInches() {
+    	Length feet = new Length(1.0, LengthUnit.FEET);
+    	Length inches = new Length(12.0, LengthUnit.INCHES);
+    	
+    	Length sumLength = QuantityMeasurementApp.demonstrateLengthAddition(feet, inches, LengthUnit.INCHES);
+    	Length expectedLength = new Length(24.0, LengthUnit.INCHES);
+    	assertTrue(QuantityMeasurementApp.demonstrateLengthEquality(sumLength, expectedLength));
+    }
+    
+    @Test
+    public void testAddition_ExplicitTargetUnit_NullTargetUnit() {
+    	Length feet = new Length(1.0, LengthUnit.FEET);
+    	Length inches = new Length(12.0, LengthUnit.INCHES);
+    	
+    	assertThrows(IllegalArgumentException.class, () -> {
+    		QuantityMeasurementApp.demonstrateLengthAddition(feet, inches, null);
+    	});
     }
 }

@@ -26,6 +26,11 @@ public class QuantityMeasurementApp {
    public static Length demonstrateLengthConversion(Length length, LengthUnit toUnit) {
 	   return length.convertTo(toUnit);
    }
+   
+   // Demonstrate length addition
+   public static Length demonstrateLengthAddition(Length length1, Length length2) {
+	   return length1.add(length2);
+   }
     
     public static void main(String[] args) {
     	// Demonstrate feet and inch equality
@@ -54,6 +59,16 @@ public class QuantityMeasurementApp {
     	
     	// Demonstrate conversion overloaded method
     	System.out.println(demonstrateLengthConversion(new Length(36.0, LengthUnit.INCHES), LengthUnit.YARDS));
+    	System.out.println();
+    	
+    	// Demonstrate addition of two length
+    	System.out.println(demonstrateLengthAddition(new Length(1.0, LengthUnit.FEET), new Length(2.0, LengthUnit.FEET)));
+    	System.out.println();
+    	
+    	System.out.println(demonstrateLengthAddition(new Length(1.0, LengthUnit.FEET), new Length(12.0, LengthUnit.INCHES)));
+    	System.out.println();
+    	
+    	System.out.println(demonstrateLengthAddition(new Length(12.0, LengthUnit.INCHES), new Length(1.0, LengthUnit.FEET)));
     	System.out.println();
 	}
 }

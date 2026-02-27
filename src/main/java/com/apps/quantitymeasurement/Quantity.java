@@ -104,5 +104,20 @@ public class Quantity<U extends IMeasurable> {
         Quantity<WeightUnit> totalWeight = weightInKilograms.add(weightInPounds, WeightUnit.KILOGRAM);
         System.out.println("Total Weight in kilograms " + totalWeight.getValue() + " " + totalWeight.getUnit());
         System.out.println();
+        
+        Quantity<VolumeUnit> oneLitre = new Quantity<>(1.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> thousandMl = new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
+
+        System.out.println("Are volumes equal? " + oneLitre.equals(thousandMl));
+        System.out.println();
+
+        double converted = oneLitre.convertTo(VolumeUnit.MILLILITRE);
+        System.out.println("1 litre in millilitres: " + converted);
+        System.out.println();
+
+        Quantity<VolumeUnit> gallon = new Quantity<>(1.0, VolumeUnit.GALLON);
+        Quantity<VolumeUnit> sumVolume = oneLitre.add(gallon, VolumeUnit.LITRE);
+        System.out.println("Sum in litres: " + sumVolume.getValue() + " " + sumVolume.getUnit());
+        System.out.println();
     }
 }

@@ -45,5 +45,22 @@ public class QuantityMeasurementApp {
         Quantity<WeightUnit> sumWeightInGrams = demonstrateAddition(weightInKilograms, weightInPounds, WeightUnit.GRAM);
         System.out.println("Sum Weight in Grams: " + sumWeightInGrams.getValue() + " " + sumWeightInGrams.getUnit());
         System.out.println();
+        
+        
+        // demonstration for volume
+        Quantity<VolumeUnit> litre = new Quantity<>(1.0, VolumeUnit.LITRE);
+        Quantity<VolumeUnit> millilitre = new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
+
+        // Equality
+        System.out.println(demonstrateEquality(litre, millilitre));
+        System.out.println();
+
+        // Conversion
+        System.out.println(demonstrateConversion(litre, VolumeUnit.GALLON));
+        System.out.println();
+
+        // Addition
+        System.out.println(demonstrateAddition(litre, millilitre));
+        System.out.println();
     }
 }

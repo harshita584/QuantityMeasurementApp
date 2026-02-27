@@ -2,7 +2,6 @@ package com.apps.quantitymeasurement;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.apps.quantitymeasurement.Length.LengthUnit;
 
 public class QuantityMeasurementAppTest {
     @Test
@@ -55,8 +54,8 @@ public class QuantityMeasurementAppTest {
     
     @Test
     public void testMultipleFeetComparison() {
-        Length feet = new Length(3.0, Length.LengthUnit.FEET);
-        Length inch = new Length(36.0, Length.LengthUnit.INCHES);
+        Length feet = new Length(3.0, LengthUnit.FEET);
+        Length inch = new Length(36.0, LengthUnit.INCHES);
 
         assertTrue(feet.equals(inch));
     }
@@ -71,8 +70,8 @@ public class QuantityMeasurementAppTest {
     
     @Test
     public void centimeterEquals39Point3701Inches() {
-    	Length centimeter = new Length(1.0, LengthUnit.CENTIMETERS);
-    	Length inches = new Length(0.393701, LengthUnit.INCHES);
+    	Length centimeter = new Length(100.0, LengthUnit.CENTIMETERS);
+    	Length inches = new Length(39.37, LengthUnit.INCHES);
     	
     	assertTrue(centimeter.equals(inches));
     }

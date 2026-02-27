@@ -58,6 +58,49 @@ public class Quantity<U extends IMeasurable> {
         
         return new Quantity<>(result, targetUnit);
     }
+    
+    // Subtract and return in this unit
+    public Quantity<U> subtract(Quantity<U> other) {
+        if (other == null) throw new IllegalArgumentException("Quantity cannot be null");
+        if (!unit.getClass().equals(other.unit.getClass())) throw new IllegalArgumentException("Provide similar unit for deletion");
+
+        double base1 = unit.convertToBaseUnit(value);
+        double base2 = other.unit.convertToBaseUnit(other.value);
+
+        double resultBase = base1 - base2;
+        double result = unit.convertFromBaseUnit(resultBase);
+
+        return new Quantity<>(result, unit);
+    }
+
+    // Subtract and return in target unit
+    public Quantity<U> subtract(Quantity<U> other, U targetUnit) {
+        if (other == null) throw new IllegalArgumentException("Quantity cannot be null");
+        if (targetUnit == null) throw new IllegalArgumentException("Target cannot be null");
+        if (!unit.getClass().equals(other.unit.getClass())) throw new IllegalArgumentException("Provide similar unit for deletion");
+        if (!unit.getClass().equals(targetUnit.getClass())) throw new IllegalArgumentException("Provide similar target unit for deletion");
+
+        double base1 = unit.convertToBaseUnit(value);
+        double base2 = other.unit.convertToBaseUnit(other.value);
+
+        double resultBase = base1 - base2;
+        double result = targetUnit.convertFromBaseUnit(resultBase);
+
+        return new Quantity<>(result, targetUnit);
+    }
+
+    public Quantity<U> divide(Quantity<U> other) {
+        if (other == null) throw new IllegalArgumentException("Quantity cannot be null");
+        if (!unit.getClass().equals(other.unit.getClass())) throw new IllegalArgumentException("Provide similar unit type for division");
+
+        double base1 = unit.convertToBaseUnit(value);
+        double base2 = other.unit.convertToBaseUnit(other.value);
+        
+        if (base2 == 0) throw new IllegalArgumentException("Cannot divide by zero");
+        double result = base1 / base2;
+
+        return new Quantity<>(result, unit);
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -281,7 +281,81 @@ public class QuantityMeasurementAppTest {
     public void preventVolumeVsLengthComparison() {
         Quantity<VolumeUnit> volume = new Quantity<>(1.0, VolumeUnit.LITRE);
         Quantity<LengthUnit> length = new Quantity<>(1.0, LengthUnit.FEET);
-
+        
         assertFalse(volume.equals(length));
+    }
+    
+    @Test
+    public void subtractSameUnit() {
+        Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> five = new Quantity<>(5.0, LengthUnit.FEET);
+        Quantity<LengthUnit> result = ten.subtract(five);
+
+        assertEquals(5.0, result.getValue());
+    }
+
+    @Test
+    public void subtractCrossUnit() {
+        Quantity<LengthUnit> tenFeet = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> sixInches = new Quantity<>(6.0, LengthUnit.INCHES);
+        Quantity<LengthUnit> result = tenFeet.subtract(sixInches);
+
+        assertEquals(9.5, result.getValue());
+    }
+
+    @Test
+    public void subtractExplicitTargetUnit() {
+        Quantity<LengthUnit> tenFeet = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> sixInches = new Quantity<>(6.0, LengthUnit.INCHES);
+        Quantity<LengthUnit> result = tenFeet.subtract(sixInches, LengthUnit.INCHES);
+
+        assertEquals(114.0, result.getValue());
+    }
+
+    @Test
+    public void subtractNegativeResult() {
+        Quantity<LengthUnit> five = new Quantity<>(5.0, LengthUnit.FEET);
+        Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> result = five.subtract(ten);
+
+        assertEquals(-5.0, result.getValue());
+    }
+    
+    @Test
+    public void divideSameUnit() {
+        Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> two = new Quantity<>(2.0, LengthUnit.FEET);
+        Quantity<LengthUnit> result = ten.divide(two);
+
+        assertEquals(5.0, result.getValue());
+    }
+
+    @Test
+    public void divideCrossUnit() {
+        Quantity<LengthUnit> twentyFourInches = new Quantity<>(24.0, LengthUnit.INCHES);
+        Quantity<LengthUnit> twoFeet = new Quantity<>(2.0, LengthUnit.FEET);
+        Quantity<LengthUnit> result = twentyFourInches.divide(twoFeet);
+
+        assertEquals(1.0, result.getValue());
+    }
+
+    @Test
+    public void divideLessThanOne() {
+        Quantity<LengthUnit> five = new Quantity<>(5.0, LengthUnit.FEET);
+        Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
+
+        Quantity<LengthUnit> result = five.divide(ten);
+
+        assertEquals(0.5, result.getValue());
+    }
+
+    @Test
+    public void divideByZeroThrowsException() {
+        Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
+        Quantity<LengthUnit> zero = new Quantity<>(0.0, LengthUnit.FEET);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            ten.divide(zero);
+        });
     }
 }

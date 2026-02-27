@@ -4,6 +4,7 @@ public class Length {
     private double value;
     private LengthUnit unit;
 
+    // Constructor
     public Length(double value, LengthUnit unit) {
         if (unit == null) throw new IllegalArgumentException("Enter a valid length unit");
         if (!Double.isFinite(value)) throw new IllegalArgumentException("Enter a valid double value for conversion");

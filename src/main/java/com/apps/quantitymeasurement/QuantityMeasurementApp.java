@@ -1,7 +1,7 @@
 package com.apps.quantitymeasurement;
 
 public class QuantityMeasurementApp {
-	// Generic method to demonstrate length equality check
+	// Method to demonstrate length equality check
     public static boolean demonstrateLengthEquality(Length length1, Length length2) {
     	return length1.equals(length2);
     }
@@ -33,6 +33,40 @@ public class QuantityMeasurementApp {
    // Demonstrate length addition
    public static Length demonstrateLengthAddition(Length length1, Length length2, LengthUnit targetUnit) {
 	   return length1.add(length2, targetUnit);
+   }
+   
+   // Demonstrate weight equality
+   public static boolean demonstrateWeightEquality(Weight weight1, Weight weight2) {
+       return weight1.equals(weight2);
+   }
+   
+   // Demonstrate weight equality 
+   public static boolean demonstrateWeightComparison(double value1, WeightUnit unit1, double value2, WeightUnit unit2) {
+	   Weight weight1 = new Weight(value1, unit1);
+	   Weight weight2 = new Weight(value2, unit2);
+
+	   return demonstrateWeightEquality(weight1, weight2);
+   }
+   
+   // convert the weight
+   public static Weight demonstrateWeightConversion(double value, WeightUnit fromUnit, WeightUnit toUnit) {
+       Weight weight = new Weight(value, fromUnit);
+       return weight.convertTo(toUnit);
+   }
+
+   // convert the weight
+   public static Weight demonstrateWeightConversion(Weight weight, WeightUnit toUnit) {
+       return weight.convertTo(toUnit);
+   }
+
+   // Demonstrate weight addition
+   public static Weight demonstrateWeightAddition(Weight weight1, Weight weight2) {
+       return weight1.add(weight2);
+   }
+
+   // Demonstrate weight addition with target unit
+   public static Weight demonstrateWeightAddition(Weight weight1, Weight weight2, WeightUnit targetUnit) {
+       return weight1.add(weight2, targetUnit);
    }
     
     public static void main(String[] args) {
@@ -83,5 +117,18 @@ public class QuantityMeasurementApp {
     	
     	System.out.println(demonstrateLengthAddition(new Length(1.0, LengthUnit.FEET), new Length(12.0, LengthUnit.INCHES), LengthUnit.YARDS));
     	System.out.println();
+    	
+    	
+    	System.out.println(demonstrateWeightComparison(1000.0, WeightUnit.GRAM, 1.0, WeightUnit.KILOGRAM));
+        System.out.println();
+
+        System.out.println(demonstrateWeightConversion(2.0, WeightUnit.KILOGRAM, WeightUnit.GRAM));
+        System.out.println();
+
+        System.out.println(demonstrateWeightAddition(new Weight(500.0, WeightUnit.GRAM), new Weight(500.0, WeightUnit.GRAM)));
+        System.out.println();
+        
+        System.out.println(demonstrateWeightAddition(new Weight(500.0, WeightUnit.GRAM), new Weight(500.0, WeightUnit.GRAM), WeightUnit.KILOGRAM));
+        System.out.println();
 	}
-}
+}	

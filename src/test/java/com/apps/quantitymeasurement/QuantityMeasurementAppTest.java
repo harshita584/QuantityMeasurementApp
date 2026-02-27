@@ -325,18 +325,18 @@ public class QuantityMeasurementAppTest {
     public void divideSameUnit() {
         Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
         Quantity<LengthUnit> two = new Quantity<>(2.0, LengthUnit.FEET);
-        Quantity<LengthUnit> result = ten.divide(two);
+        double result = ten.divide(two);
 
-        assertEquals(5.0, result.getValue());
+        assertEquals(5.0, result);
     }
 
     @Test
     public void divideCrossUnit() {
         Quantity<LengthUnit> twentyFourInches = new Quantity<>(24.0, LengthUnit.INCHES);
         Quantity<LengthUnit> twoFeet = new Quantity<>(2.0, LengthUnit.FEET);
-        Quantity<LengthUnit> result = twentyFourInches.divide(twoFeet);
+        double result = twentyFourInches.divide(twoFeet);
 
-        assertEquals(1.0, result.getValue());
+        assertEquals(1.0, result);
     }
 
     @Test
@@ -344,9 +344,9 @@ public class QuantityMeasurementAppTest {
         Quantity<LengthUnit> five = new Quantity<>(5.0, LengthUnit.FEET);
         Quantity<LengthUnit> ten = new Quantity<>(10.0, LengthUnit.FEET);
 
-        Quantity<LengthUnit> result = five.divide(ten);
+        double result = five.divide(ten);
 
-        assertEquals(0.5, result.getValue());
+        assertEquals(0.5, result);
     }
 
     @Test

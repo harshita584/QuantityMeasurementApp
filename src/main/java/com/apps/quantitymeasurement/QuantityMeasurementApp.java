@@ -35,7 +35,7 @@ public class QuantityMeasurementApp {
     }
 
     // Demonstrate Division
-    public static <U extends IMeasurable> Quantity<U>
+    public static <U extends IMeasurable> double
     demonstrateDivision(Quantity<U> quantity1, Quantity<U> quantity2) {
         return quantity1.divide(quantity2);
     }

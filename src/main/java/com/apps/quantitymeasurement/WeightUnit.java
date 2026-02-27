@@ -37,6 +37,11 @@ public enum WeightUnit implements IMeasurable{
     	return Math.round(value * 100.0) / 100.0;
     }
     
+    @Override
+	public String getUnitName() {
+		return this.name();
+	}
+    
     public static void main(String[] args) {
         double kilograms = 10.0;
         double grams = WeightUnit.KILOGRAM.convertToBaseUnit(kilograms);

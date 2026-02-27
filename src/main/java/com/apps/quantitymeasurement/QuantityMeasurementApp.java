@@ -64,7 +64,6 @@ public class QuantityMeasurementApp {
         System.out.println("Sum Weight in Grams: " + sumWeightInGrams.getValue() + " " + sumWeightInGrams.getUnit());
         System.out.println();
         
-        
         // demonstration for volume
         Quantity<VolumeUnit> litre = new Quantity<>(1.0, VolumeUnit.LITRE);
         Quantity<VolumeUnit> millilitre = new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
@@ -94,5 +93,24 @@ public class QuantityMeasurementApp {
 
         System.out.println(demonstrateDivision(twentyFeet, fiveFeet));
         System.out.println();
+        
+        // Temperature demo
+        Quantity<TemperatureUnit> temp1 = new Quantity<>(0.0, TemperatureUnit.CELSIUS);
+        Quantity<TemperatureUnit> temp2 = new Quantity<>(32.0, TemperatureUnit.FAHRENHEIT);
+        System.out.println("temp1 equals temp2 ? " + demonstrateEquality(temp1, temp2));
+        System.out.println();
+
+        // Conversion
+        Quantity<TemperatureUnit> convertedTemp = demonstrateConversion(temp1, TemperatureUnit.FAHRENHEIT);
+        System.out.println("0 celcius in Fahrenheit: " + convertedTemp.getValue() + convertedTemp.getUnit());
+        System.out.println();
+
+        // Unsupported operation demo
+        try {
+        	demonstrateAddition(temp1, new Quantity<>(50.0, TemperatureUnit.CELSIUS));
+        } 
+        catch (UnsupportedOperationException e) {
+            System.out.println("Temperature add not allowed: " + e.getMessage());
+        }
     }
 }

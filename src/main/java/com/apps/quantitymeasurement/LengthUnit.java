@@ -32,4 +32,9 @@ public enum LengthUnit implements IMeasurable{
     private double roundOffTillTwoDecimal(double value) {
     	return Math.round(value * 100.0) / 100.0;
     }
+
+	@Override
+	public String getUnitName() {
+		return this.name();
+	}
 }

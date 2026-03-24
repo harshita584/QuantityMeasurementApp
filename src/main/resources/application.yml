@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/qma_db
+    username: root
+    password: 0508
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

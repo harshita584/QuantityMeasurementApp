@@ -1,0 +1,39 @@
+<div class="dashboard">
+  <div *ngIf="!(isLoggedIn$ | async)">
+    <app-auth></app-auth>
+  </div>
+
+  <div *ngIf="isLoggedIn$ | async">
+    <header>
+      <h1>Quantity Measurement</h1>
+      <p>Perform unit conversions, comparisons, and arithmetic operations.</p>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </header>
+
+    <main>
+      <div class="global-alerts">
+        <div *ngIf="isLoading$ | async" class="loading-spinner">
+          Loading...
+        </div>
+        <div *ngIf="errors$ | async as err" class="error-banner">
+          {{ err }}
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="left-panel">
+          <div class="card">
+            <app-type-selector></app-type-selector>
+            <app-action-tabs></app-action-tabs>
+            <app-unit-input></app-unit-input>
+          </div>
+          <app-result></app-result>
+        </div>
+
+        <div class="right-panel">
+          <app-history></app-history>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
